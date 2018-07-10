@@ -1,0 +1,46 @@
+buildscript {
+    ext {
+        springBootVersion = '1.5.9.RELEASE'
+    }
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+
+
+}
+plugins {
+    id 'net.ltgt.apt' version '0.10'
+}
+apply plugin: 'spring-boot'
+apply plugin: 'java'
+
+group = 'ftc.shift'
+version = '0.0.1'
+sourceCompatibility = 1.8
+
+
+repositories {
+    mavenCentral()
+}
+springBoot {
+    requiresUnpack = [ "com.sun.jersey:*" ]
+}
+
+
+dependencies {
+    compileOnly 'org.projectlombok:lombok:1.18.0'
+    apt "org.projectlombok:lombok:1.18.0"
+    testCompile group: 'com.sun.jersey', name: 'jersey-client', version: '1.18.2'
+    compile("org.springframework.boot:spring-boot-starter-web")
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: '1.5.3.RELEASE'
+    compile("com.googlecode.json-simple:json-simple:1.1.1")
+    compile "javax.ws.rs:jsr311-api:1.1.1"
+    compile 'com.sun.jersey:jersey-server:1.13'
+    compile 'com.sun.jersey:jersey-core:1.13'
+    compile 'com.sun.jersey:jersey-servlet:1.13'
+    compile group: 'com.sun.jersey', name: 'jersey-client', version: '1.19.4'
+    implementation 'com.google.firebase:firebase-admin:6.2.0'
+}
